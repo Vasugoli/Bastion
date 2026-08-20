@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: bastion
+
+  datasource:
+    url: jdbc:sqlite:./data/bastion.db
+    driver-class-name: org.sqlite.JDBC
+
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+  address: 127.0.0.1       # localhost only — not exposed to network
+
+app:
+  mode: development
+  ssh:
+    port: 2222
+    host: 0.0.0.0           # SSH exposed to network (this is intentional)
+    idle-timeout: 300
+    max-auth-attempts: 3
+  discovery:
+    mdns:
+      enabled: true
+      service-type: _bastion._tcp.local.
+    dht:
+      enabled: false        # Phase 7 — off for now
