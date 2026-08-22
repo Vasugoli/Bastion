@@ -14,8 +14,9 @@ public class PeerAuthenticator implements PublickeyAuthenticator {
 		// Phase 4 will check against the contacts database
 		String address = session.getRemoteAddress().toString();
 		System.out.println("[auth] Connection attempt from: " + address);
+		System.out.println("[auth] Username: " + username);
 		System.out.println("[auth] Key type: " + key.getAlgorithm());
-
+		System.out.println("[auth] Address:  " + session.getRemoteAddress());
 		// Accept all for now — we'll tighten this in contacts phase
 		return true;
 	}
